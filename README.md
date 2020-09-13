@@ -28,9 +28,23 @@ Commit your code regularly and meaningfully. This helps both you (in case you ev
 Be prepared to demonstrate your understanding of this week's concepts by answering questions on the following topics. You might prepare by writing down your own answers before hand.
 
 1. Explain what a token is used for.
+
+tokens or JWTs (JAson Web Tokens) are used by modern web services to authenticate a user with them. After the user is authenticated with tokens, they can see our app or sensitive data in the web browser.
+
 2. What steps can you take in your web apps to keep your data secure?
+
+we can used protected routes using an authentication token, and using axiosWithAuth so we can work with data with a protected endpoint.
+
 3. Describe how web servers work.
+
+The way that web servers work is first when web browsers locate a specific server computer though a URL and domain name, and will get information from that server.  Sometimes the information that the server has code or programs that can render information or data to the web browser.
+
 4. Which HTTP methods can be mapped to the CRUD acronym that we use when interfacing with APIs/Servers.
+
+HTTP GET - SELECT/Request
+HTTP PUT - UPDATE
+HTTP POST - INSERT/Create
+HTTP DELETE - DELETE
 
 You are expected to be able to answer questions in these areas. Your responses contribute to your Sprint Challenge grade. 
 
@@ -38,18 +52,18 @@ You are expected to be able to answer questions in these areas. Your responses c
 
 ### Task 1: Project Set Up
 
-- [ ] Create a forked copy of this project
-- [ ] Add your team lead as collaborator on Github
-- [ ] Clone your OWN version of the repository (Not Lambda's by mistake!)
-- [ ] Create a new branch: git checkout -b `<firstName-lastName>`.
-- [ ] Implement the project on your newly created `<firstName-lastName>` branch, committing changes regularly
-- [ ] Push commits: git push origin `<firstName-lastName>`
-- [ ] **RUN** npm install at the root to retrieve all the dependencies for the node server. You will not need to create any react apps here nor will you need to install any other dependencies. You should have all you need in this repo.
-- [ ] **LOOK** at all the files you've been given for this project. One important file to note is server.js. This file contains an API that you are going to be interfacing with. Below is documentation on how to interact with the API.
+- [ x] Create a forked copy of this project
+- [ x] Add your team lead as collaborator on Github
+- [x ] Clone your OWN version of the repository (Not Lambda's by mistake!)
+- [ x] Create a new branch: git checkout -b `<firstName-lastName>`.
+- [ x] Implement the project on your newly created `<firstName-lastName>` branch, committing changes regularly
+- [ x] Push commits: git push origin `<firstName-lastName>`
+- [x ] **RUN** npm install at the root to retrieve all the dependencies for the node server. You will not need to create any react apps here nor will you need to install any other dependencies. You should have all you need in this repo.
+- [x ] **LOOK** at all the files you've been given for this project. One important file to note is server.js. This file contains an API that you are going to be interfacing with. Below is documentation on how to interact with the API.
 - [ ] **RUN** npm start to get your API up and running on http://localhost:5000. This is the URL you're going to need to use within your React app in order to make AJAX requests for data.
- - [ ] **LOOK** at your client directory and notice it's just a plain ol' React App that we've built using create-react-app.
+ - [x ] **LOOK** at your client directory and notice it's just a plain ol' React App that we've built using create-react-app.
  cd into client and run npm install to retrieve the client side dependencies.
- - [ ] **RUN** npm start to fire up your React application.
+ - [ x] **RUN** npm start to fire up your React application.
 
 ### Task 2: Project Requirements
 
