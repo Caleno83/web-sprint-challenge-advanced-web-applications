@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axiosWithAuth from "../Protected/axiosWithAuth";
+import { fetchColors } from "./api/fetchColors";
 
 import Bubbles from "./Bubbles";
 import ColorList from "./ColorList";
@@ -10,8 +10,7 @@ const BubblePage = () => {
   // set that data to the colorList state property
 
   const fetchData = () => {
-    axiosWithAuth()
-    .get("/api/colors")
+    fetchColors()
     .then((res) => {
       console.log("The response for BubblePage is:", res.data);
       setColorList(res.data);
