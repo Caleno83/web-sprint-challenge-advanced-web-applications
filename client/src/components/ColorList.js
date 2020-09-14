@@ -11,6 +11,7 @@ const ColorList = ({ colors, fetchData }) => {
   console.log(colors);
   const [editing, setEditing] = useState(false);
   const [colorToEdit, setColorToEdit] = useState(initialColor);
+  const [newColor, setNewColor] = useState(initialColor);
 
   let history = useHistory();
 
@@ -39,14 +40,43 @@ const ColorList = ({ colors, fetchData }) => {
   const deleteColor = (color) => {
     // make a delete request to delete this color
     axiosWithAuth()
-    .delete(`/api/colors/${color.id}`, colorToEdit)
-    .then((res) => {
-      console.log("This is the delete response:", res);
-      setColorToEdit(res.data);
-      fetchData();
-      history.push("/bubble");
-    })
-    .catch((err) => console.log("This is the delete Error: ", err.message));
+      .delete(`/api/colors/${color.id}`, colorToEdit)
+      .then((res) => {
+        console.log("This is the delete response:", res);
+        setColorToEdit(res.data);
+        fetchData();
+        history.push("/bubble");
+      })
+      .catch((err) => console.log("This is the delete Error: ", err.message));
+  };
+
+  const newColorSubmit = (e) => {
+    e.preventDefault();
+    axiosWithAuth()
+      .post("/api/colors", newColor)
+      .then((res) => {
+        console.log("The response for newColor is:", res);
+        setNewColor(res.data);
+        fetchData();
+        history.push("/bubble");
+      })
+      .catch((err) => console.log("newColor data error:", err.message));
+    setNewColor({
+      color: "",
+      code: { hex: "" },
+    });
+  };
+
+  const newColorChanger = (e) => {
+    setNewColor({ ...newColor, [e.target.name]: e.target.value });
+  };
+
+  const newHexChanger = (e) => {
+    setNewColor({ ...newColor, code: { [e.target.name]: e.target.value } });
+  };
+
+  const handleClick = () => {
+    history.push("/");
   };
 
   return (
@@ -111,6 +141,34 @@ const ColorList = ({ colors, fetchData }) => {
           </div>
         </form>
       )}
+
+      <form id="newColor" onSubmit={newColorSubmit}>
+        <legend>Add New Color</legend>
+        <label>
+          New Color is :
+          <input
+            type="text"
+            name="color"
+            placeholder="Name of Color"
+            onChange={newColorChanger}
+            value={newColor.color}
+          />
+        </label>
+        <label>
+          Hex Code is:
+          <input
+            type="text"
+            name="hex"
+            placeholder="Color Hex"
+            onChange={newHexChanger}
+            // value={newColor.code.hex}
+          />
+        </label>
+        <button>Submit</button>
+      </form>
+
+      <button onClick={handleClick}>Sign Out</button>
+
       <div className="spacer" />
       {/* stretch - build another form here to add a color */}
     </div>
