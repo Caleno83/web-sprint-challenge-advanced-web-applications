@@ -45,6 +45,7 @@ const Login = () => {
 
   return (
     <>
+    <div className="login">
       <h1>Welcome To The BubBle App!</h1>
       <form onSubmit={onSubmit}>
         <input
@@ -64,6 +65,7 @@ const Login = () => {
         <button>Log in</button>
         {isLoading ? <LoadingSpinner /> : null}
       </form>
+      </div>
     </>
   );
 };
