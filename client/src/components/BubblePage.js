@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import { fetchColors } from "./api/fetchColors";
 
 import Bubbles from "./Bubbles";
 import ColorList from "./ColorList";
@@ -9,9 +9,24 @@ const BubblePage = () => {
   // fetch your colors data from the server when the component mounts
   // set that data to the colorList state property
 
+  const fetchData = () => {
+    fetchColors()
+    .then((res) => {
+      console.log("The response for BubblePage is:", res.data);
+      setColorList(res.data);
+    })
+    .catch((err) =>
+      console.error("The Error for BubblePage is", err.message)
+    );
+  }
+
+  useEffect(() => {
+    fetchData();
+  },[])
+
   return (
     <>
-      <ColorList colors={colorList} updateColors={setColorList} />
+      <ColorList colors={colorList} updateColors={setColorList} fetchData={fetchData} />
       <Bubbles colors={colorList} />
     </>
   );
